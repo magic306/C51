@@ -1,0 +1,39 @@
+//****************************************
+// Update to MPU6050 by shinetop
+// MCU: STC89C52
+// 2012.3.1
+// 功能: 显示加速度计和陀螺仪的10位原始数据
+//****************************************
+// GY-52 MPU3050 IIC测试程序
+// 使用单片机STC89C51 
+// 晶振：11.0592M
+// 显示：LCD1602
+// 编译环境 Keil uVision2
+// 参考宏晶网站24c04通信程序
+// 时间：2011年9月1日
+// QQ：531389319
+//****************************************
+#include <reg52.h>
+#include <math.h>
+#include <stdio.h>   //<stdio.h>：定义了输入输出函数、类型以及宏，函数几乎占了标准库的1/3。
+#include <intrins.h> //<intrins.h>:定义了一些字符移位函数。
+typedef unsigned char uchar;
+typedef unsigned int uint;
+typedef unsigned short ushort;
+//****************************************
+//定义51单片机端口
+//****************************************
+#define DataPort P0   //LCD1602数据端口
+sbit SCL=P1^0;        //IIC时钟引脚定义
+sbit SDA=P1^1;        //IIC数据引脚定义
+sbit LCM_RS=P2^0;     //LCD1602命令端口
+sbit LCM_RW=P2^1;     //LCD1602命令端口
+sbit LCM_EN=P2^2;     //LCD1602命令端口
+//****************************************
+//定义MPU6050内部地址
+//****************************************
+#define SMPLRT_DIV  0X19    //陀螺仪采样率，典型值：0X07(125HZ)
+#define CONFIG  0X1A  //低通滤波频率，典型值：0x06（5HZ）
+#include GYRO_CONFIG  0X1B  //陀螺仪自检及检测范围，典型值：0x18（不自检，2000deg、s）
+#include ACCEL_CONFIG 0X1C  //加速度计自检、测量范围及高通滤波频率，典型值：0x01（不自检，2G，5HZ）
+#define 
